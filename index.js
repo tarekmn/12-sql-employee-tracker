@@ -29,8 +29,15 @@ function initData() {
       // }
 
     ])
-    .then((response) => {
-      console.log(response.initialCommand)
+    .then((data) => {
+      console.log(data.initialCommand)
+
+      if(data.initialCommand === 'view_all_departments'){
+        console.log('correct target')
+      }
+
+
+
     })
 
 }

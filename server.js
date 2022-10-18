@@ -17,13 +17,13 @@ const db = mysql.createConnection(
     user: 'root',
     // MySQL password
     password: 'Vikings123$',
-    database: 'classlist_db'
+    database: 'company_db'
   },
-  console.log(`Connected to the X database.`)
+  console.log(`Connected to the company_db database.`)
 );
 
 // Query database
-db.query('', function (err, results) {
+db.query('SELECT name from department', function (err, results) {
   console.log(results);
 });
 
