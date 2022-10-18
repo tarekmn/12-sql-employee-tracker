@@ -34,6 +34,8 @@ function initData() {
 
       if(data.initialCommand === 'view_all_departments'){
         console.log('correct target')
+        
+      
       }
 
 

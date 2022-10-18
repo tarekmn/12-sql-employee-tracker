@@ -3,4 +3,6 @@
 -- JOIN  ON  = ;
 
 -- will start with viewing departments first --
-SELECT name from department;
+SELECT * from department;
+SELECT * from role;
+SELECT * from employee;

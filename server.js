@@ -1,6 +1,7 @@
 const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
+const cTable = require('console.table');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -23,8 +24,19 @@ const db = mysql.createConnection(
 );
 
 // Query database
-db.query('SELECT name from department', function (err, results) {
-  console.log(results);
+// function displayDepartment() {
+db.query('SELECT * from department', function (err, results) {
+  console.table(results);
+});
+// }
+
+db.query('SELECT * from role', function (err, results) {
+  console.table(results);
+});
+
+
+db.query('SELECT * from employee', function (err, results) {
+  console.table(results);
 });
 
 // Default response for any other request (Not Found)
@@ -35,3 +47,6 @@ app.use((req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+// module.exports = server;
