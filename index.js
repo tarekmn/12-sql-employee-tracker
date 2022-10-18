@@ -12,22 +12,7 @@ function initData() {
         name: 'initialCommand',
         choices: ['view_all_departments', 'view_all_roles', 'add_a_department', 'add_a_role', 'add_an_employee', 'update_an_employee_role'],
       },
-      // {
-      //   type: 'input',
-      //   message: 'What is the employee name?',
-      //   name: 'name',
-      // },
-      // {
-      //   type: 'input',
-      //   message: 'What is the employee ID?',
-      //   name: 'employeeID',
-      // },
-      // {
-      //   type: 'input',
-      //   message: 'What is the email address?',
-      //   name: 'email',
-      // }
-
+    
     ])
     .then((data) => {
       console.log(data.initialCommand)
@@ -37,8 +22,6 @@ function initData() {
         
       
       }
-
-
 
     })
 
@@ -50,7 +33,7 @@ function initData() {
 
 function init() {
   initData()
-
+  //for now, will fill later with logic
 
 
 
