@@ -1,6 +1,29 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const mysql = require('mysql2');
+const cTable = require('console.table');
+
+
+
+//  db = createConnection(config)
+//  db = create(config)
+// db.query(statement)
+// db.close() ? .end()?
+// db.query() // this will not work
+
+// Connect to database
+const db = mysql.createConnection(
+  {
+    host: 'localhost',
+    // MySQL username,
+    user: 'root',
+    // MySQL password
+    password: 'Vikings123$',
+    database: 'company_db'
+  },
+  console.log(`Connected to the company_db database.`)
+);
+
 
 
 function initData() {
@@ -15,11 +38,14 @@ function initData() {
     
     ])
     .then((data) => {
-      console.log(data.initialCommand)
+      // console.log(data.initialCommand)
 
       if(data.initialCommand === 'view_all_departments'){
         console.log('correct target')
         
+        db.query('SELECT * from department', function (err, results) {
+          console.table(results);
+        })
       
       }
 
