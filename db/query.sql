@@ -13,7 +13,15 @@ SELECT * from employee;
 -- INNER JOIN department ON department.department_id = role.department_id 
 -- INNER JOIN role ON role.id = employee.role_id;
 
-SELECT employee.id AS id, employee.first_name AS first_name, employee.last_name AS last_name, role.title AS title, role.department_id AS department_id , role.salary AS salary, employee.manager_id AS manager_id
+SELECT employee.id AS id, 
+employee.first_name AS first_name, 
+employee.last_name AS last_name, 
+role.title AS title, 
+role.department_id AS department_id , 
+role.salary AS salary, employee.manager_id AS manager_id
 FROM employee
-INNER JOIN department ON department.id = role.department_id 
-INNER JOIN role ON role.id = employee.role_id;
+INNER JOIN role ON role.id = employee.role_id
+INNER JOIN department ON department.id = role.department_id; 
+
+
+-- WHERE employee.id = 1;

@@ -82,7 +82,14 @@ function viewRoles() {
 }
 
 function viewEmployees() {
-  db.query('SELECT * from employee', function (err, results) {
+  db.query(`SELECT employee.id AS id, employee.first_name AS first_name, 
+  employee.last_name AS last_name, 
+  role.title AS title, 
+  role.department_id AS department_id , 
+  role.salary AS salary, employee.manager_id AS manager_id
+  FROM employee
+  INNER JOIN role ON role.id = employee.role_id
+  INNER JOIN department ON department.id = role.department_id;`, function (err, results) {
     console.table(results);
     loadMainPrompts();
   })
