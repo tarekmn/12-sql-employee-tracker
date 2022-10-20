@@ -55,6 +55,9 @@ function loadMainPrompts() {
         case "add_an_employee":
           addEmployee();
           break;
+        case "update_an_employee_role":
+          updateEmployee();
+          break;
         case "EXIT":
           process.exit();
           break;
@@ -115,7 +118,7 @@ function addDeparment() {
 
 function addRole() {
   db.query("SELECT * from department", function (err, results) {
-    console.log(results);
+    console.table(results); //how can i add "here is a list of department IDs for this question"
     const IDarray = results.map((department) => department.id);
     //get results, extract id's,
 
@@ -169,14 +172,12 @@ function addEmployee() {
           message: "Which roleID is the new role in?",
           name: "roleID",
           choices: rIDarray,
-
         },
         {
           type: "list",
           message: "Which managerID is the new role in?",
           name: "managerID",
-          choices: [1,2,3,4,5,6,7]
-
+          choices: [1, 2, 3, 4, 5, 6, 7],
         },
       ])
       .then((data) => {
@@ -190,6 +191,44 @@ function addEmployee() {
       });
   });
 }
+
+
+function updateEmployee() {
+  db.query("SELECT * from employee", function (err, results) {
+    const employeeArray = results.map((employee) => employee.first_name);
+
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          message: "Which employee would you like to update?",
+          name: "employeeToUpdate",
+          choices: employeeArray,
+        },
+        {
+          type: "list",
+          message: "What is the employee's new role?",
+          name: "employeeNewRole",
+          choices: [1,2,3,4,5,6]
+        },
+      ])
+      .then((data) => {
+        db.query(
+          `UPDATE employee
+          SET role_id = ${data.employeeNewRole}
+          WHERE first_name = '${data.employeeToUpdate}';`,
+          function (err, results) {
+            err ? console.log("error", err) : console.log("successfully added");
+            loadMainPrompts();
+          }
+        );
+      });
+  });
+}
+
+
+
+
 
 function init() {
   loadMainPrompts();
