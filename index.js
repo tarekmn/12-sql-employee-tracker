@@ -152,9 +152,7 @@ function addRole() {
 
 function addEmployee() {
   db.query("SELECT * from role", function (err, results) {
-    console.log(results);
     const rIDarray = results.map((role) => role.id);
-    //get results, extract id's,
 
     inquirer
       .prompt([
@@ -172,20 +170,18 @@ function addEmployee() {
           name: "roleID",
           choices: rIDarray,
 
-          //view all roles
         },
-        // {
-        //   type: "list",
-        //   message: "Which managerID is the new role in?",
-        //   name: "managerID",
-        //   choices: mIDarray,
+        {
+          type: "list",
+          message: "Which managerID is the new role in?",
+          name: "managerID",
+          choices: [1,2,3,4,5,6,7]
 
-        //   //view all managerID's
-        // },
+        },
       ])
       .then((data) => {
         db.query(
-          `INSERT INTO employee (first_name, last_name, roleID) VALUES ("${data.first_name}", "${data.last_name}", "${data.rIDarray}" );`,
+          `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${data.first_name}", "${data.last_name}", "${data.roleID}", "${data.managerID}" );`,
           function (err, results) {
             err ? console.log("error", err) : console.log("successfully added");
             loadMainPrompts();
