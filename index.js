@@ -28,6 +28,7 @@ function loadMainPrompts() {
     .then((data) => {
       let choice = data.choice;
 
+      //each potential answer, has a function to execute the proper Query
       switch (choice) {
         case "view_all_departments":
           viewDepartments();
@@ -100,7 +101,9 @@ function addDeparment() {
       db.query(
         `INSERT INTO department (name) VALUES ("${data.newDepartment}");`,
         function (err, results) {
-          err ? console.log("error", err) : console.log("successfully added");
+          err
+            ? console.log("error", err)
+            : console.log("Department successfully added!");
           loadMainPrompts();
         }
       );
@@ -133,7 +136,9 @@ function addRole() {
         db.query(
           `INSERT INTO role (title, salary, department_id) VALUES ("${data.newRoleTitle}", "${data.newRoleSalary}", "${data.newRoleDepartment}" );`,
           function (err, results) {
-            err ? console.log("error", err) : console.log("successfully added");
+            err
+              ? console.log("error", err)
+              : console.log("Role successfully added!");
             loadMainPrompts();
           }
         );
@@ -172,7 +177,9 @@ function addEmployee() {
         db.query(
           `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${data.first_name}", "${data.last_name}", "${data.roleID}", "${data.managerID}" );`,
           function (err, results) {
-            err ? console.log("error", err) : console.log("successfully added");
+            err
+              ? console.log("error", err)
+              : console.log("Employee successfully added!");
             loadMainPrompts();
           }
         );
@@ -205,7 +212,9 @@ function updateEmployee() {
           SET role_id = ${data.employeeNewRole}
           WHERE first_name = '${data.employeeToUpdate}';`,
           function (err, results) {
-            err ? console.log("error", err) : console.log("successfully added");
+            err
+              ? console.log("error", err)
+              : console.log("Employee successfully updated!");
             loadMainPrompts();
           }
         );
