@@ -1,11 +1,11 @@
+// pacakge requirements
 const inquirer = require("inquirer");
 const fs = require("fs");
 const mysql = require("mysql2");
 const cTable = require("console.table");
 const db = require("./Assets/js/connection");
 
-
-
+//main prompt questions
 function loadMainPrompts() {
   inquirer
     .prompt([
@@ -60,8 +60,7 @@ function loadMainPrompts() {
 function viewDepartments() {
   db.query("SELECT * from department", function (err, results) {
     console.table(results);
-    //get results, extract id's,
-    loadMainPrompts();
+    loadMainPrompts(); //reruns the prompts on all remaining functions
   });
 }
 
@@ -110,9 +109,8 @@ function addDeparment() {
 
 function addRole() {
   db.query("SELECT * from department", function (err, results) {
-    console.table(results); //how can i add "here is a list of department IDs for this question"
-    const IDarray = results.map((department) => department.id);
-    //get results, extract id's,
+    console.table(results);
+    const IDarray = results.map((department) => department.id); //creates array of department ids
 
     inquirer
       .prompt([
@@ -129,8 +127,6 @@ function addRole() {
           message: "Which departmentID is the new role in?",
           name: "newRoleDepartment",
           choices: IDarray,
-
-          //run view all departments
         },
       ])
       .then((data) => {
@@ -184,7 +180,6 @@ function addEmployee() {
   });
 }
 
-
 function updateEmployee() {
   db.query("SELECT * from employee", function (err, results) {
     const employeeArray = results.map((employee) => employee.first_name);
@@ -201,7 +196,7 @@ function updateEmployee() {
           type: "list",
           message: "What is the employee's new role?",
           name: "employeeNewRole",
-          choices: [1,2,3,4,5,6]
+          choices: [1, 2, 3, 4, 5, 6],
         },
       ])
       .then((data) => {
@@ -218,13 +213,8 @@ function updateEmployee() {
   });
 }
 
-
-
-
-
 function init() {
   loadMainPrompts();
-  //for now, will fill later with logic
 }
 
 init();
