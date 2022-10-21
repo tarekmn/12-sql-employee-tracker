@@ -25,7 +25,7 @@ https://github.com/tarekmn/12-sql-employee-tracker
 
 In addition, I included a Screencastify video url:
 
-![Tutorial #1]("https://drive.google.com/file/d/1ThNltmewC8mfwxKOe1YJuAKI6v-cidAK/view")
+https://drive.google.com/file/d/1ThNltmewC8mfwxKOe1YJuAKI6v-cidAK/view
 
 ## License
 
